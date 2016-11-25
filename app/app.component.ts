@@ -8,7 +8,9 @@ import {Ng2C3} from './library/ng2c3.component';
 
 @Component({
     selector: 'my-app',
-    template: "<div style='width:500px;height:500px'><ng2-c3 [data]='_data'></ng2-c3></div>"
+    template: `<div style='width:500px;height:500px'>
+                    <ng2-c3 [data]='_data'></ng2-c3>
+                </div>`
 })
 
 export class AppComponent {
