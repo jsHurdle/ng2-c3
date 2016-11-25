@@ -3,12 +3,12 @@
 import {Component, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 //Including Ng2C3 component into the application
-import {Ng2C3} from './library/ng2C3.component';
+import {Ng2C3} from './library/ng2c3.component';
 
 
 @Component({
     selector: 'my-app',
-    template: '<div style="width:500px;height:500px"><ng2-c3 bind-data="_data"></ng2-c3></div>'
+    template: "<div style='width:500px;height:500px'><ng2-c3 [data]='_data'></ng2-c3></div>"
 })
 
 export class AppComponent {

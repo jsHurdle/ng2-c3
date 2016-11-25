@@ -13,7 +13,7 @@
           For creating a Line Chart
           Create a Wrapper and include ng2-c3 component 
           <div style="width:500px;height:500px">
-              <ng2-c3 bind-data="_data"></ng2-c3>
+              <ng2-c3 [data]="data"></ng2-c3>
           </div>
           _data to be passed from corresponding component.
           
