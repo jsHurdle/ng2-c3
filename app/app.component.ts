@@ -4,7 +4,6 @@ import {Component, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 @Component({
     selector: 'my-app',
-
     template: `<div style='width:500px'>
                     <ng2-c3 [grid]='_grid' [legend]='_legend' [zoom]='_zoom' [point]='_point' [data]='_data' [axis]='_axis' [tooltip]='_tooltip' [chartConfig]='_chartConfig'></ng2-c3>
                </div>`
