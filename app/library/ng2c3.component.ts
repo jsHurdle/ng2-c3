@@ -17,7 +17,8 @@ declare var c3:any;
   selector: 'ng2-c3',
   template: ``,
   encapsulation: ViewEncapsulation.None,
-  inputs:['data', 'axis', 'tooltip', 'chartConfig', 'grid', 'legend', 'zoom', 'point']
+  inputs:['data', 'axis', 'tooltip', 'chartConfig', 'grid', 'legend', 'zoom', 'point'],
+  styles:[`.ng2-c3{ display:block;}`] // This is required for proper positioning of tooltip
 })
 export class Ng2C3 {
 
@@ -37,6 +38,8 @@ export class Ng2C3 {
   constructor(elementReference : ElementRef) {
     
     this.element = elementReference.nativeElement;
+    // Adding the below line to specify CSS for the ng2-c3 selector
+    this.element.className += " ng2-c3";
   }
 
   private __render( inputData:any, axisData:any, tooltipData:any, chartConfigData:any, gridData:any, legendData:any, zoomData:any, pointData:any) : void {
