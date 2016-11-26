@@ -17,23 +17,26 @@ declare var c3:any;
   selector: 'ng2-c3',
   template: ``,
   encapsulation: ViewEncapsulation.None,
-  inputs:['data', 'axis', 'tooltip', 'chartConfig', 'grid', 'legend', 'zoom', 'point'],
+  inputs:['data', 'chartOptions', 'configs'],
   styles:[`.ng2-c3{ display:block;}`] // This is required for proper positioning of tooltip
 })
 export class Ng2C3 {
 
   // All Inputs for this component declaration
   private data : any; // Configuration for series to be used for generating C3 has to be here
-  private axis : any; // Configuration for axis 
-  private tooltip:any; // Tooltip configuration
-  private chartConfig:any // Creating chart configuration
-
-  private grid : any; // Configuration for grid related things of C3
-  private legend : any; // Configuration for using legend
-  private zoom : any; // Configuration for zooming if needed
-  private point : any; // Configuration for point related things of C3
-
+  private chartOptions:any // Includes all the configurations for the chart and also individual chart configurations
   private element : HTMLElement; // Element to which the chart has to be attached to
+  private configs:any;
+
+  // Below configs have been captured from C3 Reference Doc's Need to be updated if in case c3 includes new options
+  private c3Configs : Array<string> = ['axis', 'tooltip', 'grid', 'legend', 'zoom', 'regions', 'subchart'];
+
+  /**
+   *  Below options have been captured from C3 Reference Doc's 
+   *  This doesnot include call back methods those options would be captured seperately
+   */
+  private c3Options : Array<string> = ['size', 'padding', 'color', 'interaction', 'transition', 'point', 'line', 'area', 'bar', 'pie', 'donut', 'gauge'];
+
 
   constructor(elementReference : ElementRef) {
     
@@ -42,7 +45,7 @@ export class Ng2C3 {
     this.element.className += " ng2-c3";
   }
 
-  private __render( inputData:any, axisData:any, tooltipData:any, chartConfigData:any, gridData:any, legendData:any, zoomData:any, pointData:any) : void {
+  private __render( inputData:any,  chartOptionsData:any, chartConfigsData:any) : void {
     let _this : Ng2C3 = this;
     if(this.isValid(inputData)) {
 
@@ -52,30 +55,16 @@ export class Ng2C3 {
       c3InputData['bindto'] = _this.element;
       c3InputData['data'] = inputData;
 
-      if(this.isValid(axisData)){
-        c3InputData['axis'] = axisData;
-      }
 
-      if(this.isValid(tooltipData)) {
-        c3InputData['tooltip'] = tooltipData;
+      /**
+       * Options for the charts provided
+       * Options listed like axis, tooltip, grid, legend, zoom , point
+       * Individual options are parsed and set in c3InputData Json
+       * to be provided to c3
+       */
+      if(this.isValid(chartConfigsData)) {
+        this.updateIfValidInput(chartConfigsData, c3InputData,  this.c3Configs )
       }
-
-      if(this.isValid(gridData)) {
-        c3InputData['grid'] = gridData;
-      }
-
-      if(this.isValid(legendData)) {
-        c3InputData['legend'] = legendData;
-      }
-
-      if(this.isValid(zoomData)) {
-        c3InputData['zoom'] = zoomData;
-      }
-
-      if(this.isValid(pointData)) {
-        c3InputData['point'] = pointData;
-      }
-
 
       /**
        * Chart Configuration could have multiple Options
@@ -83,10 +72,8 @@ export class Ng2C3 {
        * Some callback initializers like OnInit, Onrendered, OnMouseOver, OnMouseOut
        *  
        **/
-      if(this.isValid(chartConfigData)) {
-        for(let key in chartConfigData) {
-          c3InputData[key] = chartConfigData[key];
-        }
+      if(this.isValid(chartOptionsData)) {
+        this.updateIfValidInput(chartOptionsData, c3InputData, this.c3Options);
       }
 
       /**
@@ -122,10 +109,24 @@ export class Ng2C3 {
     return flag;
   }
 
+  /**
+   * A utility method to traverse through teh input map, checks with the given config 
+   *  Updates the  output map if input is present in config
+   *  skips the field if the given input is not present in config map
+   *  */ 
+  private updateIfValidInput(inputMap: any, outputMap: any,  config: Array<string>) {
+     for(let key in inputMap) {
+          let isValidOption = config.indexOf(key);
+          if(isValidOption >= 0) {          
+            outputMap[key] = inputMap[key];
+          }
+        }
+  }
+
   //Checks for the changes made in the data and re-renders the charts accordingly
   private ngOnChanges( changes: { [propertyName: string]: SimpleChange } ): void {
     try {
-      this.__render( this.data, this.axis, this.tooltip, this.chartConfig, this.grid, this.legend, this.zoom, this.point);
+      this.__render(this.data, this.chartOptions, this.configs);
     } catch(err) {
       console.log(err);
     }

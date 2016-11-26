@@ -4,54 +4,72 @@ import {Component, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 @Component({
     selector: 'my-app',
-    template: `<div style='width:500px'>
-                    <ng2-c3 [grid]='_grid' [legend]='_legend' [zoom]='_zoom' [point]='_point' [data]='_data' [axis]='_axis' [tooltip]='_tooltip' [chartConfig]='_chartConfig'></ng2-c3>
+    template: `<div style='width:500px;'>
+                    <ng2-c3 [data]='_data' [chartOptions]='_chartOptions' [configs]='_configs'></ng2-c3>
                </div>`
 })
 
 export class AppComponent {
    private _data : any;
-   private _axis : any;
-   private _tooltip : any;
-   private _chartConfig : any;
-
-   private _grid : any;
-   private _legend : any;
-   private _zoom : any;
-   private _point : any;
+   private _chartOptions : any;
+   private _configs : any;
 
    constructor() {
-       // Initializing Data
+
+       // data for the chart
        this._data = {
             columns: [
-            ['data1', 30, 200, 100, 400, 150, 250],
-            ['data2', 50, 20, 10, 40, 15, 25]
+            ['data1', 30, 20, 50, 40, 60, 50],
+            ['data2', 200, 130, 90, 240, 130, 220],
+            ['data3', 300, 200, 160, 400, 250, 250],
+            ['data4', 200, 130, 90, 240, 130, 220],
+            ['data5', 130, 120, 150, 140, 160, 150],
+            ['data6', 90, 70, 20, 50, 60, 120],
         ],
-        axes: {
-            data1: 'y',
-            data2: 'y2'
+        type: 'bar',
+        types: {
+            data3: 'spline',
+            data4: 'line',
+            data6: 'area',
         },
+        groups: [
+            ['data1','data2']
+        ]
        };
-       
-       //Specific Axis Configuration
-       this._axis = {
-            y2: {
-                show: true
-            }
-        };
-        
-        //Specific tooltip Configuration
-        this._tooltip = {
-            format: {
-                title: function (d) { return 'Data ' + d; }
-            }
+
+       //Options provided for chart like axis, tooltip, legend, zoom etc.
+       this._configs = {
+           'axis' : {
+                y2: {
+                    show: true
+                },
+           },
+           'tooltip': {
+                format: {
+                    title: function (d) { return 'Data ' + d; }
+                }
+           },
+           'grid' : {
+                x: {
+                    show: true
+                },
+                y: {
+                    show: true
+                }
+           },
+           'legend' : {
+                position: 'inset'
+           },
+           'zoom': {
+                enabled: true
+           }
         };
 
         //Specific Chart Configuration
-        this._chartConfig = {
+        this._chartOptions = {
              size: {
-                height: 240,
-                width: 480
+                height: 500,
+                width: 800
              },
              padding: {
                 top: 40,
@@ -67,30 +85,5 @@ export class AppComponent {
             }
         };
 
-        // Specify Grid related Configuration
-        this._grid = {
-            x: {
-                show: true
-            },
-            y: {
-                show: true
-            }
-        };
-
-        // Specify Legend related Configuration
-        this._legend = {
-            position: 'inset'
-        };
-
-        // Specify Zooming related Configuration
-        this._zoom = {
-            enabled: true
-        };
-
-        // Specify Point related Configuration
-        this._point = {
-            show: true
-        };
-        
    }
 }
