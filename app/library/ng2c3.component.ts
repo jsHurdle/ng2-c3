@@ -1,6 +1,7 @@
-import {Component, Input, SimpleChange, ElementRef, ViewEncapsulation} from '@angular/core';
-//import * as c3 from 'c3';
-
+import {Component, Input, SimpleChange, ElementRef, ViewEncapsulation, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+//Below Declaration is mandatory
+//As C3 does not export any component
+declare var c3:any;
 
 /**
  * Ng2-C3 angular2 directive for C3 charts
@@ -13,7 +14,6 @@ import {Component, Input, SimpleChange, ElementRef, ViewEncapsulation} from '@an
  */
   //TODO: Handle more generic items for various other types of charts
 @Component({
-  moduleId: module.id,
   selector: 'ng2-c3',
   template: ``,
   encapsulation: ViewEncapsulation.None
@@ -25,6 +25,7 @@ export class Ng2C3 {
   private element : HTMLElement; // Element to which the chart has to be attached to
 
   constructor(elementReference : ElementRef) {
+    
     this.element = elementReference.nativeElement;
   }
 
@@ -74,7 +75,7 @@ export class Ng2C3 {
   private ngOnChanges( changes: { [propertyName: string]: SimpleChange } ): void {
     try {
       this.__render( this.data );
-    } catch(err : Error) {
+    } catch(err) {
       console.log(err);
     }
   }
