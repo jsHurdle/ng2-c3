@@ -18,7 +18,7 @@ declare var c3:any;
   template: ``,
   encapsulation: ViewEncapsulation.None,
   inputs:['data', 'axis', 'tooltip', 'chartConfig'],
-  styles:[`.ng2-c3{ display:inline-block;}`] // This is required for proper positioning of tooltip
+  styles:[`.ng2-c3{ display:block;}`] // This is required for proper positioning of tooltip
 })
 export class Ng2C3 {
 
