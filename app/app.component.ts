@@ -9,7 +9,7 @@ import {Ng2C3} from './library/ng2c3.component';
 @Component({
     selector: 'my-app',
     template: `<div style='width:500px;height:500px'>
-                    <ng2-c3 [data]='_data' [axis]='_axis' [tooltip]='_tooltip' [chartConfig]="_chartConfig"></ng2-c3>
+                    <ng2-c3 [data]='_data' [axis]='_axis' [tooltip]='_tooltip' [chartConfig]='_chartConfig'></ng2-c3>
                </div>`
 })
 
@@ -29,21 +29,21 @@ export class AppComponent {
             data1: 'y',
             data2: 'y2'
         },
-       } 
+       };
        
        //Specific Axis Configuration
        this._axis = {
             y2: {
                 show: true
             }
-        }
+        };
         
         //Specific tooltip Configuration
         this._tooltip = {
             format: {
                 title: function (d) { return 'Data ' + d; }
             }
-        }
+        };
 
         //Specific Chart Configuration
         this._chartConfig = {
@@ -63,7 +63,7 @@ export class AppComponent {
             transition: {
                  duration: 100
             }
-        }
+        };
         
    }
 }
