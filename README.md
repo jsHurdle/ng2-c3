@@ -16,11 +16,11 @@ All you have to do is follow these simple steps:
 1. npm install
 - First navigate to any empty directory where you want to download the contents.
 ```sh
-git clone https://github.com/ThoongaTechies/ng2-c3.git
+git clone https://github.com/jsHurdle/ng2-c3.git
 ```
 In case you are using ssh for cloning, do this instead
 ```sh
-git@github.com:ThoongaTechies/ng2-c3.git
+git@github.com:jsHurdle/ng2-c3.git
 ```
 - From your desired terminal, do
 ```sh
