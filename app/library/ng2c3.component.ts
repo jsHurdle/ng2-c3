@@ -83,7 +83,6 @@ export class Ng2C3 {
        * }
        * 
        */
-        console.log(c3InputData);
         c3.generate(c3InputData); // Generates the C3 chart for the given configuration and places it inside the directive's element.
     }
 
