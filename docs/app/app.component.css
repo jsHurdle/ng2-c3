@@ -1,0 +1,43 @@
+.demo-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #555;
+}
+
+.title {
+    float: left;
+    padding: 10px;
+    margin: 0;
+}
+
+.subtitle {
+    float: right;
+    padding: 10px;
+    margin: 0;
+    line-height: 32px;
+}
+
+.demo-header {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.demo-header:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+
+.user-pick {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.user-chart-selection {
+    padding: 5px;
+    font-size: 15px;
+    color: #555;
+}
+
+.float-left {
+    float: left;
+}
