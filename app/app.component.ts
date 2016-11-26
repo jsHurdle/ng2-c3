@@ -2,14 +2,10 @@
 
 import {Component, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
-//Including Ng2C3 component into the application
-import {Ng2C3} from './library/ng2c3.component';
-
-
 @Component({
     selector: 'my-app',
     template: `<div style='width:500px;height:500px'>
-                    <ng2-c3 [data]='_data' [axis]='_axis' [tooltip]='_tooltip' [chartConfig]='_chartConfig'></ng2-c3>
+                    <ng2-c3 [grid]='_grid' [legend]='_legend' [zoom]='_zoom' [point]='_point' [data]='_data' [axis]='_axis' [tooltip]='_tooltip' [chartConfig]='_chartConfig'></ng2-c3>
                </div>`
 })
 
@@ -18,6 +14,12 @@ export class AppComponent {
    private _axis : any;
    private _tooltip : any;
    private _chartConfig : any;
+
+   private _grid : any;
+   private _legend : any;
+   private _zoom : any;
+   private _point : any;
+
    constructor() {
        // Initializing Data
        this._data = {
@@ -63,6 +65,31 @@ export class AppComponent {
             transition: {
                  duration: 100
             }
+        };
+
+        // Specify Grid related Configuration
+        this._grid = {
+            x: {
+                show: true
+            },
+            y: {
+                show: true
+            }
+        };
+
+        // Specify Legend related Configuration
+        this._legend = {
+            position: 'inset'
+        };
+
+        // Specify Zooming related Configuration
+        this._zoom = {
+            enabled: true
+        };
+
+        // Specify Point related Configuration
+        this._point = {
+            show: true
         };
         
    }

@@ -17,7 +17,7 @@ declare var c3:any;
   selector: 'ng2-c3',
   template: ``,
   encapsulation: ViewEncapsulation.None,
-  inputs:['data', 'axis', 'tooltip', 'chartConfig']
+  inputs:['data', 'axis', 'tooltip', 'chartConfig', 'grid', 'legend', 'zoom', 'point']
 })
 export class Ng2C3 {
 
@@ -27,6 +27,11 @@ export class Ng2C3 {
   private tooltip:any; // Tooltip configuration
   private chartConfig:any // Creating chart configuration
 
+  private grid : any; // Configuration for grid related things of C3
+  private legend : any; // Configuration for using legend
+  private zoom : any; // Configuration for zooming if needed
+  private point : any; // Configuration for point related things of C3
+
   private element : HTMLElement; // Element to which the chart has to be attached to
 
   constructor(elementReference : ElementRef) {
@@ -34,7 +39,7 @@ export class Ng2C3 {
     this.element = elementReference.nativeElement;
   }
 
-  private __render( inputData : any, axisData:any, tooltipData:any, chartConfigData:any) : void {
+  private __render( inputData:any, axisData:any, tooltipData:any, chartConfigData:any, gridData:any, legendData:any, zoomData:any, pointData:any) : void {
     let _this : Ng2C3 = this;
     if(this.isValid(inputData)) {
 
@@ -51,6 +56,23 @@ export class Ng2C3 {
       if(this.isValid(tooltipData)) {
         c3InputData['tooltip'] = tooltipData;
       }
+
+      if(this.isValid(gridData)) {
+        c3InputData['grid'] = gridData;
+      }
+
+      if(this.isValid(legendData)) {
+        c3InputData['legend'] = legendData;
+      }
+
+      if(this.isValid(zoomData)) {
+        c3InputData['zoom'] = zoomData;
+      }
+
+      if(this.isValid(pointData)) {
+        c3InputData['point'] = pointData;
+      }
+
 
       /**
        * Chart Configuration could have multiple Options
@@ -100,7 +122,7 @@ export class Ng2C3 {
   //Checks for the changes made in the data and re-renders the charts accordingly
   private ngOnChanges( changes: { [propertyName: string]: SimpleChange } ): void {
     try {
-      this.__render( this.data, this.axis, this.tooltip, this.chartConfig);
+      this.__render( this.data, this.axis, this.tooltip, this.chartConfig, this.grid, this.legend, this.zoom, this.point);
     } catch(err) {
       console.log(err);
     }
