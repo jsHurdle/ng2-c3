@@ -10,6 +10,7 @@ This also includes,
 - Uses webpack for building and serving the application
 - Uses NPM for bundling the packages necessary
 - References
+- Demo [Link](https://jshurdle.github.io/ng2-c3/)
 
 All you have to do is follow these simple steps:
 
