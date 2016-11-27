@@ -35,7 +35,9 @@ export class Ng2C3 {
    *  Below options have been captured from C3 Reference Doc's 
    *  This doesnot include call back methods those options would be captured seperately
    */
-  private c3Options : Array<string> = ['size', 'padding', 'color', 'interaction', 'transition', 'point', 'line', 'area', 'bar', 'pie', 'donut', 'gauge'];
+  private c3Options : Array<string> = ['size', 'padding', 'color', 'interaction', 'transition', 'point', 
+                                      'line', 'area', 'bar', 'pie', 'donut', 'gauge', 'oninit', 'onrendered', 
+                                      'onmouseover', 'onmouseout','onresize','onresized'];
 
 
   constructor(elementReference : ElementRef) {
