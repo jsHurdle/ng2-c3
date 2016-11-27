@@ -8,8 +8,9 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
     private _data : any;
-    private _chartOptions : any;
-    private _chartConfig : any;
+    // Initializing chartOptions and chartConfigs with empty object
+    private _chartOptions : any = {};
+    private _chartConfig : any = {};
 
     private _chartTypes : any;
     private _allCharts : any;
